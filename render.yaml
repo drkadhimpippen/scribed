@@ -4,6 +4,11 @@ services:
     env: static
     buildCommand: npm install && npm run build
     staticPublishPath: ./build
+    envVars:
+      - key: REACT_APP_EPIC_CLIENT_ID
+        value: 003ff0fd-81c4-40fd-860c-f2cc1ff1442f
+      - key: REACT_APP_EPIC_FHIR_URL
+        value: https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4/
     routes:
       - type: rewrite
         source: /*
