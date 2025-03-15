@@ -2,7 +2,7 @@ services:
   - type: web
     name: scribed
     env: static
-    buildCommand: npm install && npm run build
+    buildCommand: rm -rf node_modules && npm install && npm run build
     staticPublishPath: ./build
     envVars:
       - key: REACT_APP_EPIC_CLIENT_ID
