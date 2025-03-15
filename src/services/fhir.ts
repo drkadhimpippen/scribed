@@ -1,6 +1,9 @@
 import FHIR from 'fhirclient';
 import { Patient, Encounter } from '../types';
 
+// Epic's OAuth 2.0 authorization endpoint
+const EPIC_AUTH_URL = 'https://fhir.epic.com/interconnect-fhir-oauth/oauth2/authorize';
+const EPIC_TOKEN_URL = 'https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token';
 const EPIC_FHIR_URL = process.env.REACT_APP_EPIC_FHIR_URL || 'https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4/';
 
 class FHIRService {
@@ -8,12 +11,14 @@ class FHIRService {
 
   async initialize() {
     try {
-      // Initialize SMART on FHIR client
+      // Initialize OAuth 2.0 client
       this.client = await FHIR.oauth2.init({
         clientId: process.env.REACT_APP_EPIC_CLIENT_ID,
-        scope: 'launch/patient patient/*.read launch openid fhirUser',
+        scope: 'patient/*.read encounter.read encounter.write documentreference.write',
         redirectUri: `${window.location.origin}/auth-callback`,
         iss: EPIC_FHIR_URL,
+        fhirServiceUrl: EPIC_FHIR_URL,
+        patientId: 'SMART-1234',
       });
       return true;
     } catch (error) {
