@@ -1,0 +1,12 @@
+{
+  "keys": [
+    {
+      "kty": "RSA",
+      "kid": "scribed-key-1",
+      "use": "sig",
+      "alg": "RS256",
+      "n": "xwQ72P9z9OYshiQ-ntDYaPnnfwG6u9JAdLMZ5o0dmjlcyrvwQRdoFIKPnO65Q8mh6F_LDSxjxa2Yzo_wdjhbPZLjfUJXgCzm54cClXzT5twzo7lzoAfaJlkTsoZc2HFWqmcXvBsYdLfDGZfzC4xlGCl-vADs9fsX9cA",
+      "e": "AQAB"
+    }
+  ]
+} 
