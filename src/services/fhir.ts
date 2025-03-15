@@ -11,14 +11,13 @@ class FHIRService {
 
   async initialize() {
     try {
-      // Initialize OAuth 2.0 client
+      // Initialize SMART on FHIR client with EHR launch parameters
       this.client = await FHIR.oauth2.init({
         clientId: process.env.REACT_APP_EPIC_CLIENT_ID,
-        scope: 'patient/*.read encounter.read encounter.write documentreference.write',
+        scope: 'launch openid fhirUser patient/*.read encounter.read encounter.write documentreference.write',
         redirectUri: `${window.location.origin}/auth-callback`,
         iss: EPIC_FHIR_URL,
-        fhirServiceUrl: EPIC_FHIR_URL,
-        patientId: 'SMART-1234',
+        launch: new URLSearchParams(window.location.search).get('launch') || undefined
       });
       return true;
     } catch (error) {
